@@ -11,5 +11,5 @@ After installing bluez library, we tested the example scripts for scanning bluet
 
 ![Bluetooth Scan](/pics/screen.png)
 
-We ran into an issue where increasing N on a wifi scan resulted in a reoccuring error, "device or resource busy." Initially, we tried increasing the pause time
+We ran into an issue where increasing N on a wifi scan resulted in a reoccuring error, "device or resource busy." Initially, we tried increasing the pause time between network scans within the script, which helped but didn't solve the issue. This allowed the program to run much longer, but the error still eventually occurred.
 

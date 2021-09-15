@@ -20,7 +20,9 @@ In Matlab we wrote [a script](/matlab/wifi_dat_proc.m) in order to parse the .ma
 
 A sample output of our graph is shown here:
 
-![Matlab Occurance Graph](/pics/matlab.jpg)
+![Matlab Occurance Graph1](/pics/long_network_names.jpg)
+
+![Matlab Occurance Graph2](/pics/many_network_names.jpg)
 
 In our sample a lot of BU networks show up, but these could be manually eliminated while parsing the data.  In fact, any in-place outliers which were not the moving cars would be easily detectable on this graph, and therefore would be easier to remove.
 

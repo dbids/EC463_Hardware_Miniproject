@@ -2,11 +2,10 @@
 
 % 1. Go to Home > Import Data
 % 2. Select delimited, variable type: cell
-% 3. Change the imported variable name to dataset, save to mat file:
-% save('datax.mat','dataset'
+% 3. Save to mat file: save('data_x.mat','data')
 
-load manytest.mat
-dataset=manydata;
+load data.mat
+dataset=dataset3;
 N = size(dataset,2);
 % Get rid of half data points at the end
 if mod(N,7)
@@ -75,14 +74,39 @@ end
 
 %% Data processing
 num = c;
-ongoing_marker = [];
+marker = [];
+names = cell(1);
+num_occurs = [];
+index_occurs = [];
 
 % Count repeats
+num_names = 0;
 for ii=1:num
-    if ~(sum(ismember(ongoing_marker,ii))>0)
-        
-        
-        
-        
+    if ~(sum(ismember(marker,ii))>0) % if ii hasn't been marked yet
+        num_names = num_names + 1;
+        marker = [marker ii];
+        thisname = essid{ii};
+        names{num_names} = thisname;
+        num_occurs(num_names) = 1;
+        index_occurs(num_occurs(num_names),num_names) = ii;
+        for jj = ii:num
+            if ~(sum(ismember(marker,jj))>0) % if jj hasn't been marked
+                if strcmp(thisname,essid{jj}) % if the name repeats
+                    num_occurs(num_names) = num_occurs(num_names) + 1;
+                    index_occurs(num_occurs(num_names),num_names) = jj;
+                    marker = [marker jj];
+                end % otherwise, nothing happens and jj isn't marked
+            end
+        end
     end
 end
+
+figure
+b = bar(num_occurs);
+text(1:length(num_occurs),num_occurs,num2str(num_occurs'),'vert','bottom','horiz','center'); 
+xticklabels(names);
+xtickangle(45);
+xlabel('Network Name')
+ylabel('Number of Occurances')
+title('Repeated Networks During Scan Period')
+grid on;

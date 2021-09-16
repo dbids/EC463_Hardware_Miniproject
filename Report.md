@@ -26,4 +26,8 @@ A sample output of our graph is shown here:
 
 In our sample a lot of BU networks show up, but these could be manually eliminated while parsing the data.  In fact, any in-place outliers which were not the moving cars would be easily detectable on this graph, and therefore would be easier to remove.
 
-Hopefully this presents one way that we can use the data presented by these scripts, though there are obviously many more!
+However, now that the data has been parsed, we can look at some interesting aspects of the networks, but rather than just generic, time-ordered information of the whole dataset, we can look at the time-ordered information of each network individually. This gives us an objective view of the data as well as direct comparisons between the networks. One example (which I find the most interesting because it's a physical measurement) is viewing the signal strength of each network over that 15 minute polling period.
+
+![Matlab Signal Level Graph](/pics/long_signal_levels.jpg)
+
+Notably, the smaller networks detected have much less oscillation compared to the large BU networks that have much heavier traffic. Some additional interesting things we can look at from this data is the channel that the network was read through at each poll, and the frequency the network operates at.

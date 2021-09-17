@@ -30,7 +30,7 @@ However, now that the data has been parsed, we can look at some interesting aspe
 
 ![Matlab Signal Level Graph](/pics/long_signal_levels.jpg)
 
-Notably, the smaller networks detected have much less oscillation compared to the large BU networks that have much heavier traffic. Some additional interesting things we can look at from this data is the channel that the network was read through at each poll, and the frequency the network operates at. We found it odd that the frequency of the BU networks is constantly changing throughout the scan period. We hypothesized that the pi could be accessing different network grid points, and maybe the operation of each node varies slightly.
+Notably, the smaller networks detected have much less oscillation compared to the large BU networks that have much heavier traffic. Additionally some interesting things we can look at from this data is the channel that the network was read through at each poll, and the frequency the network operates at. We found it odd that the frequency of the BU networks is constantly changing throughout the scan period. We hypothesized that the pi could be accessing different network grid points, and maybe the operation of each node varies slightly.
 
 ![Matlab Frequency Graph](/pics/long_freq.jpg)
 

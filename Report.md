@@ -11,12 +11,12 @@ After installing bluez library, we tested the example scripts for scanning bluet
 
 ![Bluetooth Scan](/pics/screen.png)
 
-We ran into an issue where increasing N on a wifi scan resulted in a reoccuring error, "device or resource busy." Initially, we tried increasing the pause time between network scans within the script, which helped but didn't solve the issue. This allowed the program to run much longer, but the error still eventually occurred.
+We ran into an issue where increasing N on a wifi scan resulted in a reoccuring error, "device or resource busy." Initially, we tried increasing the pause time between network scans within the script, which helped but didn't completely solve the issue: the error still occurs, but the program can run much longer. With this fix, we were able to let it run for at least the required 15 minutes.
 
 ## Part 3:
-We ran the wifi scan python file for [a single data point](/data/single_data.json), [many data points](/data/many_data.json), and a [fifteen minute period](/data/data_set_3.json).  The exported JSON files can be found in our repo.  We then converted these JSONs to csv online using a [free tool](https://www.convertcsv.com/json-to-csv.htm) and imported them into matlab as a .mat data file.  Then we were able to graph the data in matlab and get some intersting results!
+We ran the wifi scan python file for [a single data point](/data/single_data.json), [many data points](/data/many_data.json), and a [fifteen minute period](/data/data_set_3.json). The exported JSON files can be found in our repo. We then converted these JSONs to csv online using a [free tool](https://www.convertcsv.com/json-to-csv.htm) and imported them into matlab as a .mat data file. Then we were able to graph the data in matlab and get some intersting results!
 
-In Matlab we wrote [a script](/matlab/wifi_dat_proc.m) in order to parse the .mat file into seperate arrays.  Then we decided to iterate over those arrays and find all the times that a given essid occured and count them within the script.  Our script is far from efficient with an n^2 asymptotic complexity, but it still worked for our 15 minute run.  In theory, using this information we could place the rasberry pi close to a highway and reduce the delay time in the wifi_scan.py script.  Then by counting the number of times that a given car registered, you could estimate the speed of the car, and the amount of traffic given the relative congestion.  In addition. with the way we imported the data into matlab, you could make many further graphs which demonstrate different network features exported into the JSON file depending on the use case.
+In Matlab we wrote [a script](/matlab/wifi_dat_proc.m) in order to parse the .mat file into seperate arrays. Then we decided to iterate over those arrays and find all the times that a given essid occured and count them within the script.  Our script is far from efficient with an n^2 asymptotic complexity, but it still worked for the data from our 15 minute run. In theory, using this information we could place the raspberry pi close to a highway and reduce the delay time in the wifi_scan.py script. Then by counting the number of times that a given car registered, you could estimate the speed of the car, and the amount of traffic given the relative congestion. In addition. with the way we imported the data into matlab, you could make many further graphs which demonstrate different network features exported into the JSON file depending on the use case.
 
 A sample output of our graph is shown here:
 
@@ -30,4 +30,8 @@ However, now that the data has been parsed, we can look at some interesting aspe
 
 ![Matlab Signal Level Graph](/pics/long_signal_levels.jpg)
 
-Notably, the smaller networks detected have much less oscillation compared to the large BU networks that have much heavier traffic. Some additional interesting things we can look at from this data is the channel that the network was read through at each poll, and the frequency the network operates at.
+Notably, the smaller networks detected have much less oscillation compared to the large BU networks that have much heavier traffic. Some additional interesting things we can look at from this data is the channel that the network was read through at each poll, and the frequency the network operates at. We found it odd that the frequency of the BU networks is constantly changing throughout the scan period. We hypothesized that the pi could be accessing different network grid points, and maybe the operation of each node varies slightly.
+
+![Matlab Frequency Graph](/pics/long_freq.jpg)
+
+![Matlab Channels Graph](/pics/long_channel.jpg)

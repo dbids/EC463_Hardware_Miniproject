@@ -100,13 +100,72 @@ for ii=1:num
         end
     end
 end
-
+%
+% plot occurances
 figure
 b = bar(num_occurs);
-text(1:length(num_occurs),num_occurs,num2str(num_occurs'),'vert','bottom','horiz','center'); 
+text(1:length(num_occurs),num_occurs,num2str(num_occurs'),'vert','bottom','horiz','center'); % found online 
 xticklabels(names);
 xtickangle(45);
 xlabel('Network Name')
 ylabel('Number of Occurances')
 title('Repeated Networks During Scan Period')
 grid on;
+
+% plot signal level over the period
+fig = figure;
+for i = 1:6
+    subplot(6,1,i)
+    indvec = index_occurs(:,i);
+    indvec(indvec==0) = [];
+    plot(signal_level_dbm(indvec))
+    legend(names{i},'Location','Southwest')
+    xticklabels({})
+end
+han=axes(fig,'visible','off'); 
+han.Title.Visible='on';
+han.XLabel.Visible='on';
+han.YLabel.Visible='on';
+ylabel(han,'Signal Level (dBm)');
+xlabel(han,'time');
+title(han,'Signal Level of Each Network During Scan Period')
+fig.Position = [190 71 791 734];
+% 126-131 found online
+
+% Plot channel!
+fig = figure;
+for i = 1:6
+    subplot(6,1,i)
+    indvec = index_occurs(:,i);
+    indvec(indvec==0) = [];
+    plot(channel(indvec))
+    legend(names{i},'Location','Northwest')
+    xticklabels({})
+end
+han=axes(fig,'visible','off'); 
+han.Title.Visible='on';
+han.XLabel.Visible='on';
+han.YLabel.Visible='on';
+ylabel(han,'Channel #');
+xlabel(han,'time');
+title(han,'Channel of Each Network During Scan Period')
+fig.Position = [190 71 791 734];
+
+% Plot frequency!
+fig = figure;
+for i = 1:6
+    subplot(6,1,i)
+    indvec = index_occurs(:,i);
+    indvec(indvec==0) = [];
+    plot(freq(indvec))
+    legend(names{i},'Location','Northeast')
+    xticklabels({})
+end
+han=axes(fig,'visible','off'); 
+han.Title.Visible='on';
+han.XLabel.Visible='on';
+han.YLabel.Visible='on';
+ylabel(han,'Frequency (Hz)');
+xlabel(han,'time');
+title(han,'Frequency of Each Network During Scan Period')
+fig.Position = [190 71 791 734];
